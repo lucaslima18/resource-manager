@@ -20,6 +20,9 @@ class ScooterViewSet(ModelViewSet):
     
 
     def create(self, request, *args, **kwargs):
+        """
+        """
+        
         user = User.objects.get(username=request.user)
         scooter = Scooter()
         scooter.scooter_model = request.data['scooter_model']
@@ -30,19 +33,12 @@ class ScooterViewSet(ModelViewSet):
     
         if not user.is_staff:
             Response.status_code = 404
-            return Response({'resp': "not success"})
+            return Response({'resp': "you not have authrization to do this!"})
         
         
         scooter.save()
 
-        return Response({'resp': "success"})
-
-
-    #Ver somente as scooters livres
-
-    #alugar uma scooter
-
-    #liberar uma scooter
+        return Response({'resp': "scooter success added!"})
 
 
 class UserViewSet(ModelViewSet):
@@ -57,6 +53,7 @@ class UserViewSet(ModelViewSet):
     def create(self, request, *args, **kwargs):
         """
         """
+        
         user = User()
         user.username = request.data['username']
         user.set_password(request.data['password'])
