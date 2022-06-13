@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 
 
 class Scooter(models.Model):
+    """
+        The scooter class represents the model for scooter rental and presentation in this system
+    """
+
     scooter_model = models.CharField(max_length=255, blank=True, null=True)
     # criar regra para que a data de entrega não pode ser inferior a data do aluguel
     rent_date = models.DateField(blank=True, null=True)
