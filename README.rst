@@ -64,29 +64,59 @@ first go to the /resource_manager/settings.py directory in the following code sn
       }
     }
 
-com o banco devidamente configurado vamos criar uma env para rodarmos a nossa aplicação em um ambiente isolado:
+with the database properly configured, let's create an env to run our application in an isolated environment:
 
 .. code:: console
 
   python -m venv venv
 
-em seguida, ativaremos a virtual env
+then we will activate the virtual env
 
 .. code:: console
 
   . venv/bin/activate
 
-ou 
+or 
 
 .. code:: console
 
   source venv/bin/activate
 
-caso você esteja em um ambiente windows, rode o seguinte comando:
+if you are in a windows environment, run the following command:
 
 .. code:: console
 
   source venv/scripts/activate
+
+With your virtual env activated, let's now install pipenv so that it can install our dependencies
+
+.. code:: console
+   
+   pip install pipenv
+
+Now we will install all project dependencies with the command:
+
+.. code:: console
+   
+   pipenv install
+
+With everything properly installed, it's time to upload the migrations of our database in our project, for that, run the following commands in your terminal:
+
+.. code:: console
+   
+   python manage.py makemigrations
+
+and then:
+
+.. code:: console
+   
+   python manage.py migrate
+
+finally, let's start our application
+
+.. code:: console
+   
+   python manage.py runserver
 
 1. Installation with Docker
 ===============
@@ -114,22 +144,4 @@ http://localhost:8000/swagger/
 2. Quickstart
 =============
 
-In ``settings.py``:
-
-.. code:: python
-
-   INSTALLED_APPS = [
-      ...
-      'django.contrib.staticfiles',  # required for serving swagger ui's css/js files
-      'drf_yasg',
-      ...
-   ]
-
-In 
-
-* A JSON view of your API specification at ``/swagger.json``
-
-
-2. Configuration
-================
 
