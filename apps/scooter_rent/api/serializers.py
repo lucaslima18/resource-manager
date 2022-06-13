@@ -10,7 +10,7 @@ class ScooterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Scooter
-        fields = ['id', 'scooter_model', 'rent_date', 'end_rent_date', 'user']
+        fields = ['id', 'scooter_model', 'license_plate', 'rent_date', 'end_rent_date', 'user']
 
 class UserSerializer(serializers.ModelSerializer):
     """

@@ -8,7 +8,7 @@ class Scooter(models.Model):
     """
 
     scooter_model = models.CharField(max_length=255, blank=True, null=True)
-    # criar regra para que a data de entrega não pode ser inferior a data do aluguel
+    license_plate = models.CharField(max_length=255, blank=True, null=True)
     rent_date = models.DateField(blank=True, null=True)
     end_rent_date = models.DateField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)

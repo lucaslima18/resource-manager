@@ -11,7 +11,7 @@ from datetime import datetime
 
 class ScooterViewSet(ModelViewSet):
     """
-        
+
     """
 
     authentication_classes = [TokenAuthentication]
@@ -28,6 +28,7 @@ class ScooterViewSet(ModelViewSet):
         user = User.objects.get(username=request.user)
         scooter = Scooter()
         scooter.scooter_model = request.data['scooter_model']
+        scooter.license_plate = request.data['license_plate']
 
         try:
             scooter.rent_date = request.data['rent_date']
@@ -41,9 +42,9 @@ class ScooterViewSet(ModelViewSet):
             Response.status_code = 404
             return Response({'message': "you dont have authrization to create scooters!"})
         
-        if Scooter.objects.filter(scooter_model=scooter.scooter_model):
+        if Scooter.objects.filter(license_plate=scooter.license_plate):
             Response.status_code = 404
-            return Response({'message': f"{request.data['scooter_model']} already exists!"})  
+            return Response({'message': f"{request.data['license_plate']} license plate already exists!"})  
         
         
         scooter.save()
@@ -55,22 +56,23 @@ class ScooterViewSet(ModelViewSet):
         """
 
         """
-        print()
         user = User.objects.get(username=request.user)
         scooter = Scooter.objects.get(id=self.get_object().id)
-        blank_scooter = False
+        blank_scooter_model_or_plate = False
 
         try:
             scooter.scooter_model = request.data['scooter_model']
+            scooter.license_plate = request.data['license_plate']
+            if Scooter.objects.filter(license_plate=scooter.license_plate):
+                Response.status_code = 404
+                return Response({'message': f"{request.data['license_plate']} license plate already exists!"}) 
         
         except:
-            blank_scooter = True
+            blank_scooter_model_or_plate = True
 
         scooter.rent_date = request.data['rent_date']
         scooter.end_rent_date = request.data['end_rent_date']
-        print(request.data['user'])
         scooter.user = User.objects.only('id').get(id=request.data['user'])
-        print(user.is_staff)
 
         if not user.is_staff:
             data_list = {
@@ -80,15 +82,13 @@ class ScooterViewSet(ModelViewSet):
             }
 
             for data in data_list:
-                print(data)
                 if not data_list[data]:
                     Response.status_code = 404
                     return Response({'message': f"{data} can not be empty!"}) 
-            print(scooter.scooter_model)
 
-            if not blank_scooter:
+            if not blank_scooter_model_or_plate:
                Response.status_code = 404
-               return Response({'message': "you can't change the model name of the scooter!"})
+               return Response({'message': "you can't change the model name or license plate of the scooter!"})
             
             if request.user.id is not request.data['user']:
                 return Response({'message': "você não pode atribuir esta scooter a outro usuário!"})
@@ -103,23 +103,23 @@ class ScooterViewSet(ModelViewSet):
         """
 
         """
-
-        print()
         user = User.objects.get(username=request.user)
         scooter = Scooter.objects.get(id=self.get_object().id)
-        blank_scooter = False
+        blank_scooter_model_or_plate = False
 
         try:
-            scooter.scooter_model = request.data['scooter_model'] 
+            scooter.scooter_model = request.data['scooter_model']
+            scooter.license_plate = request.data['license_plate']
+            if Scooter.objects.filter(license_plate=scooter.license_plate):
+                Response.status_code = 404
+                return Response({'message': f"{request.data['license_plate']} license plate already exists!"}) 
         
         except:
-            blank_scooter = True
+            blank_scooter_model_or_plate = True
 
         scooter.rent_date = request.data['rent_date']
         scooter.end_rent_date = request.data['end_rent_date']
-        print(request.data['user'])
         scooter.user = User.objects.only('id').get(id=request.data['user'])
-        print(user.is_staff)
 
         if not user.is_staff:
             data_list = {
@@ -129,24 +129,34 @@ class ScooterViewSet(ModelViewSet):
             }
 
             for data in data_list:
-                print(data)
                 if not data_list[data]:
                     Response.status_code = 404
                     return Response({'message': f"{data} can not be empty!"}) 
-            print(scooter.scooter_model)
 
-            if not blank_scooter:
+            if not blank_scooter_model_or_plate:
                Response.status_code = 404
-               return Response({'message': "you can't change the model name of the scooter!"})
+               return Response({'message': "you can't change the model name or license plate of the scooter!"})
             
             if request.user.id is not request.data['user']:
-                return Response({'message': "you cannot assign this scooter to another user!"})
+                return Response({'message': "você não pode atribuir esta scooter a outro usuário!"})
 
 
         scooter.save()
 
         return Response({'message': f"scooter {scooter.scooter_model} success updated!"})
 
+
+    def destroy(self, request, *args, **kwargs):
+        user = User.objects.get(username=request.user)
+        scooter = Scooter.objects.filter(id=self.get_object().id)
+
+        if not user.is_staff:
+            Response.status_code = 404
+            return Response({'message': "you dont have authrization to create scooters!"})
+        
+        scooter.delete()
+
+        return Response({'message': "scooter successfully deleted!"})
 
 class UserViewSet(ModelViewSet):
     """
