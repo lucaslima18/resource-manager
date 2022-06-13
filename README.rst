@@ -145,4 +145,6 @@ http://localhost:8000/swagger/
 
 To make good use of this project, import the **scooter_rent.postman_collection.json file into your **POSTMAN** and enjoy! 
 
+########################################
+
 **This app was created by Lucas Amorim (Little Love) 🧑‍💻🦆🐍🐉**
