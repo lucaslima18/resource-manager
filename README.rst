@@ -118,6 +118,7 @@ finally, let's start our application
    
    python manage.py runserver
 
+
 1. Installation with Docker
 ===============
 To run this program with docker is very simple, just run the following command:
@@ -126,7 +127,11 @@ To run this program with docker is very simple, just run the following command:
 
    docker-compose up --build
    
-and then access the link:
+
+2. Quickstart
+=============
+
+with the project running access the link:
 
 .. code:: console
 
@@ -137,11 +142,4 @@ or the following link to a documentation on the swagger model:
 .. code:: console
 
 http://localhost:8000/swagger/
-
-
-
-
-2. Quickstart
-=============
-
 
