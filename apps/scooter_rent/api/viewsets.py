@@ -11,7 +11,7 @@ from datetime import datetime
 
 class ScooterViewSet(ModelViewSet):
     """
-
+        This viewset is responsible for CRUD the Scooter model
     """
 
     authentication_classes = [TokenAuthentication]
@@ -23,6 +23,11 @@ class ScooterViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         """
+            here we subscribe to the POST action and define some rules:
+            
+                1- do not allow non-admin users to use this action
+
+                2- do not allow objects with the same license plate to be created
         """
         
         user = User.objects.get(username=request.user)
@@ -54,8 +59,18 @@ class ScooterViewSet(ModelViewSet):
     
     def update(self, request, *args, **kwargs):
         """
+            here we subscribe to the PUT action and define some rules:
 
+                1 - do not allow the same license plates
+
+                2 - For non-admin users (who are renting a scooter) do not allow essential data to be empty
+
+                3 - Do not allow non-admin users to assign other users to the scooter
+
+                4 - Do not allow non-admin users to assign values ​​to attributes that cannot be changed by
+                this access level (scooter_model and license_plate)
         """
+        
         user = User.objects.get(username=request.user)
         scooter = Scooter.objects.get(id=self.get_object().id)
         blank_scooter_model_or_plate = False
@@ -75,14 +90,14 @@ class ScooterViewSet(ModelViewSet):
         scooter.user = User.objects.only('id').get(id=request.data['user'])
 
         if not user.is_staff:
-            data_list = {
+            essential_data_list = {
                 "rent_date": scooter.rent_date,
                 "end_rent_date": scooter.end_rent_date,
                 "user":  scooter.user
             }
 
-            for data in data_list:
-                if not data_list[data]:
+            for data in essential_data_list:
+                if not essential_data_list[data]:
                     Response.status_code = 404
                     return Response({'message': f"{data} can not be empty!"}) 
 
@@ -101,8 +116,18 @@ class ScooterViewSet(ModelViewSet):
 
     def partial_update(self, request, *args, **kwargs):
         """
+            here we subscribe to the PATCH action and define some rules:
 
+                1 - do not allow the same license plates
+
+                2 - For non-admin users (who are renting a scooter) do not allow essential data to be empty
+
+                3 - Do not allow non-admin users to assign other users to the scooter
+
+                4 - Do not allow non-admin users to assign values ​​to attributes that cannot be changed by
+                this access level (scooter_model and license_plate)
         """
+
         user = User.objects.get(username=request.user)
         scooter = Scooter.objects.get(id=self.get_object().id)
         blank_scooter_model_or_plate = False
@@ -122,14 +147,14 @@ class ScooterViewSet(ModelViewSet):
         scooter.user = User.objects.only('id').get(id=request.data['user'])
 
         if not user.is_staff:
-            data_list = {
+            essential_data_list = {
                 "rent_date": scooter.rent_date,
                 "end_rent_date": scooter.end_rent_date,
                 "user":  scooter.user
             }
 
-            for data in data_list:
-                if not data_list[data]:
+            for data in essential_data_list:
+                if not essential_data_list[data]:
                     Response.status_code = 404
                     return Response({'message': f"{data} can not be empty!"}) 
 
@@ -147,6 +172,10 @@ class ScooterViewSet(ModelViewSet):
 
 
     def destroy(self, request, *args, **kwargs):
+        """
+            we are using this function to set the POST action for do not allow non-admin
+            users to delete a scooter
+        """
         user = User.objects.get(username=request.user)
         scooter = Scooter.objects.filter(id=self.get_object().id)
 
@@ -158,8 +187,11 @@ class ScooterViewSet(ModelViewSet):
 
         return Response({'message': "scooter successfully deleted!"})
 
+
 class UserViewSet(ModelViewSet):
     """
+        This viewset is responsible for CRUD the User model, it's just be accessed by admins
+        (super users and staffs) of the application
     """
 
     authentication_classes = [TokenAuthentication]
@@ -169,6 +201,8 @@ class UserViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         """
+            we are using this function to set the POST action and to encrypt the password when
+            new users are created
         """
         
         user = User()
