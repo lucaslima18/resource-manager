@@ -78,9 +78,6 @@ class ScooterViewSet(ModelViewSet):
         try:
             scooter.scooter_model = request.data['scooter_model']
             scooter.license_plate = request.data['license_plate']
-            if Scooter.objects.filter(license_plate=scooter.license_plate):
-                Response.status_code = 404
-                return Response({'message': f"{request.data['license_plate']} license plate already exists!"}) 
         
         except:
             blank_scooter_model_or_plate = True
@@ -135,9 +132,6 @@ class ScooterViewSet(ModelViewSet):
         try:
             scooter.scooter_model = request.data['scooter_model']
             scooter.license_plate = request.data['license_plate']
-            if Scooter.objects.filter(license_plate=scooter.license_plate):
-                Response.status_code = 404
-                return Response({'message': f"{request.data['license_plate']} license plate already exists!"}) 
         
         except:
             blank_scooter_model_or_plate = True
@@ -181,7 +175,7 @@ class ScooterViewSet(ModelViewSet):
 
         if not user.is_staff:
             Response.status_code = 404
-            return Response({'message': "you dont have authrization to create scooters!"})
+            return Response({'message': "you dont have authrization to delete scooters!"})
         
         scooter.delete()
 

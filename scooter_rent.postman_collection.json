@@ -1,0 +1,372 @@
+{
+	"id": "cda15225-ea66-cf70-b188-595a6632b166",
+	"name": "scooter_rent",
+	"description": "",
+	"order": [
+		"cedc499b-cfa4-3166-8707-ad67fc06a9b6",
+		"1c2035f5-0da6-5196-fe65-1bba0af9e782",
+		"92ae9ccf-e584-dbc6-4727-f1d700cf3076",
+		"5c329187-5a4a-09b7-069a-809421adbacf",
+		"1f988459-fdfe-d967-861f-ce26823f717a",
+		"9e0f646c-8767-09d0-97a0-25b7262d8214",
+		"c6959895-e981-53d4-1f71-18e5f9fb3ca5",
+		"4c66b018-55ae-d50b-0a26-bad93c895888",
+		"540e2bae-6481-8a4c-ec3f-8444c59a4492",
+		"b8c54e38-4852-dec0-c8c1-fa2d3c54cbea"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1655139824751,
+	"owner": "6034833",
+	"public": false,
+	"requests": [
+		{
+			"id": "1c2035f5-0da6-5196-fe65-1bba0af9e782",
+			"headers": "Content-Type: application/json\nAuthorization: Token \n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Token ",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/user/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1655139979181,
+			"name": "get all users",
+			"description": "OBS: Just admins can use that",
+			"collectionId": "cda15225-ea66-cf70-b188-595a6632b166",
+			"responses": []
+		},
+		{
+			"id": "1f988459-fdfe-d967-861f-ce26823f717a",
+			"headers": "Content-Type: application/json\nAuthorization: Token\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Token",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/scooters/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1655141050893,
+			"name": "create scooter",
+			"description": "OBS: just admin users can use that!",
+			"collectionId": "cda15225-ea66-cf70-b188-595a6632b166",
+			"responses": [],
+			"rawModeData": "{\r\n  \"scooter_model\": \"string\",\r\n  \"license_plate\": \"string\",\r\n  \"rent_date\": \"YYYY-MM-DD\",\r\n  \"end_rent_date\": \"YYYY-MM-DD\",\r\n  \"user\": null\r\n}"
+		},
+		{
+			"id": "4c66b018-55ae-d50b-0a26-bad93c895888",
+			"headers": "Content-Type: application/json\nAuthorization: Token \n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Token ",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/scooters/{scooter_id}/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1655140305900,
+			"name": "update scooter_id",
+			"description": "to update a scooter register the following data\n\n{\n\t\"scooter_model\": \"string\",\n\t\"license_plate\": \"string\",\n\t\"rent_date\": \"YYYY-MM-DD\",\n\t\"end_rent_date\": \"YYYY-MM-DD\",\n\t\"user\": 0\n}\n\nOBS: only admin users can fully update scooters!\n",
+			"collectionId": "cda15225-ea66-cf70-b188-595a6632b166",
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "9e0f646c-8767-09d0-97a0-25b7262d8214",
+			"rawModeData": "{\n        \"rent_date\": \"YYYY-MM-DD\",\n        \"end_rent_date\": \"YYYY-MM-DD\",\n        \"user\": null\n}"
+		},
+		{
+			"id": "540e2bae-6481-8a4c-ec3f-8444c59a4492",
+			"headers": "Content-Type: application/json\nAuthorization: Token\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Token",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/scooters/{scooter_id}/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PATCH",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1655140826883,
+			"name": "partial update scooter_id copy",
+			"description": "to update a scooter register the following data\n\n{\n\t\"scooter_model\": \"string\",\n\t\"license_plate\": \"string\",\n\t\"rent_date\": \"YYYY-MM-DD\",\n\t\"end_rent_date\": \"YYYY-MM-DD\",\n\t\"user\": 0\n}\n\nOBS: only admin users can fully update scooters!\n",
+			"collectionId": "cda15225-ea66-cf70-b188-595a6632b166",
+			"responses": [],
+			"rawModeData": "{\n        \"rent_date\": \"YYYY-MM-DD\",\n        \"end_rent_date\": \"YYYY-MM-DD\",\n        \"user\": null\n}"
+		},
+		{
+			"id": "5c329187-5a4a-09b7-069a-809421adbacf",
+			"headers": "Content-Type: application/json\nAuthorization: Token \n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Token ",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/scooters/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1655140659366,
+			"name": "get all scooters",
+			"description": "",
+			"collectionId": "cda15225-ea66-cf70-b188-595a6632b166",
+			"responses": []
+		},
+		{
+			"id": "92ae9ccf-e584-dbc6-4727-f1d700cf3076",
+			"headers": "Content-Type: application/json\nAuthorization: Token\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Token",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/user/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1655141274298,
+			"name": "get all users copy",
+			"description": "OBS: Just admins can use that",
+			"collectionId": "cda15225-ea66-cf70-b188-595a6632b166",
+			"responses": [],
+			"rawModeData": "{\r\n  \"username\": \"string\",\r\n  \"password\": \"string\",\r\n  \"is_staff\": true\r\n}"
+		},
+		{
+			"id": "9e0f646c-8767-09d0-97a0-25b7262d8214",
+			"headers": "Content-Type: application/json\nAuthorization: Token \n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Token ",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/scooters/{scooter_id}/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1655140305900,
+			"name": "rent scooter by normal user",
+			"description": "to rent a scooter register the following data\n\n{\n        \"rent_date\": \"YYYY-MM-DD\",\n        \"end_rent_date\": \"YYYY-MM-DD\",\n        \"user\": null\n}",
+			"collectionId": "cda15225-ea66-cf70-b188-595a6632b166",
+			"responses": [],
+			"rawModeData": "{\n        \"rent_date\": \"YYYY-MM-DD\",\n        \"end_rent_date\": \"YYYY-MM-DD\",\n        \"user\": null\n}"
+		},
+		{
+			"id": "b8c54e38-4852-dec0-c8c1-fa2d3c54cbea",
+			"headers": "Content-Type: application/json\nAuthorization: Token\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Token",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/scooters/{scooter_id}/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1655140769722,
+			"name": "delete one user",
+			"description": "OBS: Just admins can run this!",
+			"collectionId": "cda15225-ea66-cf70-b188-595a6632b166",
+			"responses": []
+		},
+		{
+			"id": "c6959895-e981-53d4-1f71-18e5f9fb3ca5",
+			"headers": "Content-Type: application/json\nAuthorization: Token\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Token",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/scooters/{scooter_id}/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PATCH",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1655140820294,
+			"name": "parcial update rent scooter by normal user copy",
+			"description": "to rent a scooter register the following data\n\n{\n        \"rent_date\": \"YYYY-MM-DD\",\n        \"end_rent_date\": \"YYYY-MM-DD\",\n        \"user\": null\n}",
+			"collectionId": "cda15225-ea66-cf70-b188-595a6632b166",
+			"responses": [],
+			"rawModeData": "{\n        \"rent_date\": \"YYYY-MM-DD\",\n        \"end_rent_date\": \"YYYY-MM-DD\",\n        \"user\": null\n}"
+		},
+		{
+			"id": "cedc499b-cfa4-3166-8707-ad67fc06a9b6",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8000/api-token-auth/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1655140740619,
+			"name": "authenticate",
+			"description": "",
+			"collectionId": "cda15225-ea66-cf70-b188-595a6632b166",
+			"responses": [],
+			"rawModeData": "{\r\n  \"username\": \"string\",\r\n  \"password\": 000000\r\n}"
+		}
+	]
+}
